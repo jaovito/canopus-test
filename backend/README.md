@@ -30,6 +30,14 @@ Deixei o arquivo db.sqlite3 de propósito, pois nele deixei pré-armazenado algu
 
 Esse projeto foi desenvolvido para avaliação de teste da Canopus Tecnologia & Inovação. Nele foi utilizado TypeScript para melhor experiência de desenvolvimento, PostgreSQL e SQLite como banco de dados, AdonisJS como framework para desenvolvimento, visto o curto prazo. Também utilizei upload de imagens junto com as informações necessárias com o carrossel.
 
+### Usuário de teste
+Caso use o banco SQLite para testar, já deixei um usuário cadastrado para utilizar, segue os dados:
+
+```
+email: "adm@teste.com"
+password: "123456"
+```
+
 
 
 ## 🚀 Instalação e configuração

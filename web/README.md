@@ -1,34 +1,66 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+<h1 align="center">Carrossel da Saúde (Front-end)</h1>
 
-## Getting Started
+<p align="center">
+  <a href="#-tecnologias">Tecnologias</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+  <a href="#-projeto">Projeto</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+  <a href="#-instalação-e-configuração">Instalação e configuração</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+  <a href="#-licença">Licença</a>
+</p>
 
-First, run the development server:
+<br>
 
-```bash
-npm run dev
-# or
-yarn dev
+## ✨ Tecnologias
+
+Esse projeto foi desenvolvido com as seguintes tecnologias:
+
+- [NextJS](https://nextjs.org)
+- [TypeScript](https://www.typescriptlang.org)
+- [Sass](https://sass-lang.com)
+- [Eslint](https://eslint.org)
+- [Prettier](https://prettier.io)
+
+
+
+## 💻 Projeto
+
+O front-end do projeto carrossel da saúde tem como informar o usuário sobre o COVID utilizando carroseis, cards e uma seção de informação, também tem um painel administrativo onde é possível realizar o login para adicionar imagens que farão parte do carrossel no front-end, nele você pode enviar suas imagens junto com um título e descrição, também é possível edita-las e exclui-las.
+
+Esse projeto foi desenvolvido para avaliação de teste da Canopus Tecnologia & Inovação. Nele foi utilizado TypeScript para melhor experiência de desenvolvimento, NextJS framework para desenvolvimento, visto o curto prazo e suas vantagens.
+
+
+## 🚀 Instalação e configuração
+Primeiro você precisa clonar o repositório em uma pasta de sua preferência, já dentro da pasta execute o comando:
+```sh
+$ git clone https://github.com/jaovito/canopus-test.git canopus-test
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Após clonar o repósitório você precisa acessar a pasta clonada e rodar e instalas as dependências, como no exemplo abaixo:
 
-You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
+```sh
+$ cd canopus-test/web
+```
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.js`.
+```sh
+$ npm install # ou yarn install
+```
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+Assim que todas as bibliotecas forem instaladas é só buscar pelo arquivo next.config.js e alterar as variáveis ambientes e localização das imagens (localhost:3333 por padrão):
 
-## Learn More
+```js
+module.exports = {
+  images: {
+    domains: ['localhost:3333']
+  },
+  env: {
+    URL: 'http://localhost:3333',
+  },
+}
 
-To learn more about Next.js, take a look at the following resources:
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Em desenvolvimento a rota e porta da api é http://localhost:3333.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+Com todas as dependências instaladas e as variáveis ambiente configuradas, basta rodar o seguinte comando para iniciar o servidor em desenvolvimento:
+```sh
+$ npm run dev # ou yarn dev
+```

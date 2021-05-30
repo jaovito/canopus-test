@@ -63,7 +63,7 @@ PG_DB_NAME=carrossel
 ```
 
                 
-Lembrando que deve substituir as informações do banco de dadis pela informação de autenticação do seu banco instalado. 
+Lembrando que deve substituir as informações do banco de dados pela informação de autenticação do seu banco instalado. 
 
 Em desenvolvimento a rota e porta da api é http://localhost:3333.
 

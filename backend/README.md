@@ -71,7 +71,7 @@ PG_DB_NAME=carrossel
 ```
 
                 
-Lembrando que deve substituir as informações do banco de dados pela informação de autenticação do seu banco instalado. 
+Lembrando que deve substituir as informações do banco de dados pela informação de autenticação do seu banco instalado. O primeiro usuário a ser cadastrado deve ser o que esta na environment **ADM_USER**, caso deixe sqlite como default na environment **DB_CONNECTION** já deixei cadastrado o usuário **adm@teste.com**, caso use o PostgreSQL deve criar o usuário com o mesmo e-mail da environment **ADMUSER** pelo próprio backend (usando uma API Client como o Insmonia).
 
 Em desenvolvimento a rota e porta da api é http://localhost:3333.
 

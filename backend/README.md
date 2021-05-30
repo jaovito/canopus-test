@@ -24,7 +24,7 @@ Esse projeto foi desenvolvido com as seguintes tecnologias:
 
 ## 💻 Projeto
 
-O projeto carrossel feliz tem como objetivo o cadastro de usuários, onde é possível realizar o login para adicionar imagens que farão parte do carrossel no front-end, nele você pode enviar suas imagens junto com um título e descrição, também é possível edita-las e exclui-las (se for um administrador).
+O projeto carrossel da saúde tem como objetivo o cadastro de usuários, onde é possível realizar o login para adicionar imagens que farão parte do carrossel no front-end, nele você pode enviar suas imagens junto com um título e descrição, também é possível edita-las e exclui-las (se for um administrador).
 
 Deixei o arquivo db.sqlite3 de propósito, pois nele deixei pré-armazenado algumas imagens e um usuário adm (adm@teste.com) para que consiga testar rapidamente sem precisar cadastrar tudo do zero, mas sei que não é uma boa prática subi-lo no github caso vá para produção, assim como a pasta tmp.
 

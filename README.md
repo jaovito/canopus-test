@@ -2,10 +2,11 @@
 
 <br>
 
-## ✨ Tecnologias
-
 + [Back-end](https://github.com/jaovito/canopus-test/tree/main/backend)
 + [Front-end](https://github.com/jaovito/canopus-test/tree/main/web)
+
+## ✨ Tecnologias
+
 
 Esse projeto foi desenvolvido com as seguintes tecnologias:
 

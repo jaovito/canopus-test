@@ -1,4 +1,4 @@
-<h1 align="center">Carrossel Feliz</h1>
+<h1 align="center">Carrossel da Saúde</h1>
 
 <p align="center">
   <a href="#-tecnologias">Tecnologias</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
@@ -26,7 +26,9 @@ Esse projeto foi desenvolvido com as seguintes tecnologias:
 
 O projeto carrossel feliz tem como objetivo o cadastro de usuários, onde é possível realizar o login para adicionar imagens que farão parte do carrossel no front-end, nele você pode enviar suas imagens junto com um título e descrição, também é possível edita-las e exclui-las (se for um administrador).
 
-Esse projeto foi desenvolvido para avaliação de teste da Canopus Tecnologia & Inovação. Nele foi utilizado TypeScript para melhor experiência de desenvolvimento, PostgreSQL como banco de dados, AdonisJS como framework para desenvolvimento, visto o curto prazo. Também utilizei upload de imagens junto com as informações necessárias com o carrossel.
+Deixei o arquivo db.sqlite3 de propósito, pois nele deixei pré-armazenado algumas imagens e um usuário adm (adm@teste.com) para que consiga testar rapidamente sem precisar cadastrar tudo do zero, mas sei que não é uma boa prática subi-lo no github caso vá para produção, assim como a pasta tmp.
+
+Esse projeto foi desenvolvido para avaliação de teste da Canopus Tecnologia & Inovação. Nele foi utilizado TypeScript para melhor experiência de desenvolvimento, PostgreSQL e SQLite como banco de dados, AdonisJS como framework para desenvolvimento, visto o curto prazo. Também utilizei upload de imagens junto com as informações necessárias com o carrossel.
 
 
 
@@ -43,18 +45,22 @@ $ npm install # ou yarn install
 
 Assim que todas as bibliotecas forem instaladas é só buscar pelo arquivo .env.example e substituir seu nome por ".env" apenas, além disso deve alterar o conteúdo das variáveis ambiente, como no exemplo abaixo:
 
-              PORT=3333
-              HOST=0.0.0.0
-              NODE_ENV=development
-              APP_KEY=qZdeqnVFeLZR87FzSyM96MekhvGnYVU2
-              DB_CONNECTION=pg
-              PG_HOST=localhost
-              PG_PORT=5432
-              PG_USER=postgres
-              PG_PASSWORD=docker
-              PG_DB_NAME=canopus
+```
+PORT=3333
+HOST=0.0.0.0
+NODE_ENV=development
+APP_KEY=qZdeqnVFeLZR87FzSyM96MekhvGnYVU2
 
-              ADM_USER=adm@teste.com
+ADM_USER=adm@teste.com
+
+# sqlite or pg
+DB_CONNECTION=sqlite
+PG_HOST=localhost
+PG_PORT=5432
+PG_USER=postgres
+PG_PASSWORD=docker
+PG_DB_NAME=carrossel
+```
 
                 
 Lembrando que deve substituir as informações do banco de dadis pela informação de autenticação do seu banco instalado. 
@@ -484,7 +490,7 @@ Lista todas imagens no banco de dador (precisa estar logado com Bearer Token).
 #
 
 ### Fazer upload da imagem [POST]
-Envia as imagens e as armazenas na pasta tmp/uploads.
+Envia as imagens e as armazenas na pasta tmp/uploads (precisa estar logado com Bearer Token).
 
 + name (string) - Nome que deseja dar para a imagem (será mostrado no carrossel)
 + description (string) - Descrição da imagem
@@ -540,7 +546,7 @@ filename: 1622144426805-image.png
 #
 
 ### Atualiza da imagem [PUT "/:id"]
-Atualiza os dados de uma imagem, seja nome, descrição ou arquivo.
+Atualiza os dados de uma imagem, seja nome, descrição ou arquivo (precisa estar logado com Bearer Token).
 
 + name (string) - Nome que deseja dar para a imagem (será mostrado no carrossel)
 + description (string) - Descrição da imagem
@@ -583,7 +589,7 @@ image[]: <file>
 #
 
 ### Deletar uma imagem [DELETE "/:id"]
-Deleta uma imagem, tanto da pasta quanto do banco de dados.
+Deleta uma imagem, tanto da pasta quanto do banco de dados (precisa estar logado com Bearer Token).
 
 + id (param) - ID do usuário que deseja deletar
 
@@ -599,6 +605,210 @@ id: a8680112-2f34-4c29-81c8-c19974db82e5
 
   + No Body
 
+
+## Coleção de carroséis ["/carrossel"]
+
+### Listar carroséis [GET]
+Lista todos os carroséis cadastrados
+
++ Request (application/json)
++ Response (application/json)
+
+  + Body
+
+```json
+[
+  {
+    "id": "da22f558-5a9c-4cef-b025-2958434a1005",
+    "image1_id": "dec9986b-d3aa-40ae-991b-a1bd795bda00",
+    "image2_id": "bcd4cb7c-04dd-45d7-bbcd-5da1c2ab1017",
+    "image3_id": "1576115b-1b5c-4fbb-ad3d-7e19a7f74ef7",
+    "created_at": "2021-05-30T17:44:59.000-03:00",
+    "updated_at": "2021-05-30T17:44:59.000-03:00",
+    "image1": {
+      "id": "dec9986b-d3aa-40ae-991b-a1bd795bda00",
+      "path": "1622407303220-image.jpg",
+      "name": "Cuidados com o vírus.",
+      "description": "Ele pode mudar!",
+      "created_at": "2021-05-30T17:41:43.000-03:00",
+      "updated_at": "2021-05-30T17:41:43.000-03:00"
+    },
+    "image2": {
+      "id": "bcd4cb7c-04dd-45d7-bbcd-5da1c2ab1017",
+      "path": "1622407454083-image.jpg",
+      "name": "Variedade.",
+      "description": "Sabia que existem vários tipos de vacina?",
+      "created_at": "2021-05-30T17:44:14.000-03:00",
+      "updated_at": "2021-05-30T17:44:14.000-03:00"
+    },
+    "image3": {
+      "id": "1576115b-1b5c-4fbb-ad3d-7e19a7f74ef7",
+      "path": "1622407278165-image.jpg",
+      "name": "Hora da vacina!",
+      "description": "Não se esqueça de tomar.",
+      "created_at": "2021-05-30T17:41:18.000-03:00",
+      "updated_at": "2021-05-30T17:41:18.000-03:00"
+    }
+  }
+]
+```
+
+
+#
+
+### Criar um carrossel [POST]
+Cria um carrossel com 3 imagens (obrigatório ter 3 imagens, precisa estar logado com Bearer Token).
+
++ image1Id (string) - ID da imagem que deseja adicionar no carrossel
++ image2Id (string) - ID da segunda imagem que deseja adicionar no carrossel
++ image3Id (string) - ID da terceira imagem que deseja adicionar no carrossel
+
++ Request (application/json)
+
+  + Body
+
+```json
+{
+	"image1Id": "dec9986b-d3aa-40ae-991b-a1bd795bda00",
+	"image2Id": "bcd4cb7c-04dd-45d7-bbcd-5da1c2ab1017",
+	"image3Id": "1576115b-1b5c-4fbb-ad3d-7e19a7f74ef7"
+}
+```
+
++ Response (application/json)
+
+  + Body
+
+```json
+{
+  "image1_id": "dec9986b-d3aa-40ae-991b-a1bd795bda00",
+  "image2_id": "bcd4cb7c-04dd-45d7-bbcd-5da1c2ab1017",
+  "image3_id": "1576115b-1b5c-4fbb-ad3d-7e19a7f74ef7",
+  "id": 2,
+  "created_at": "2021-05-30T17:44:59.688-03:00",
+  "updated_at": "2021-05-30T17:44:59.688-03:00"
+}
+```
+
+
+#
+
+### Listar um único carrossel [GET "/:id]
+Lista um único carrossel onde foi fornecido o ID (precisa estar logado com Bearer Token).
+
++ id (param) - ID do carrossel que deseja listar
+
++ Request (application/json)
+
+  + Params
+
+```
+id: da22f558-5a9c-4cef-b025-2958434a1005
+```
+
++ Response (application/json)
+
+  + Body
+
+```json
+{
+  "id": "da22f558-5a9c-4cef-b025-2958434a1005",
+  "image1_id": "dec9986b-d3aa-40ae-991b-a1bd795bda00",
+  "image2_id": "bcd4cb7c-04dd-45d7-bbcd-5da1c2ab1017",
+  "image3_id": "1576115b-1b5c-4fbb-ad3d-7e19a7f74ef7",
+  "created_at": "2021-05-30T17:44:59.000-03:00",
+  "updated_at": "2021-05-30T17:44:59.000-03:00",
+  "image1": {
+    "id": "dec9986b-d3aa-40ae-991b-a1bd795bda00",
+    "path": "1622407303220-image.jpg",
+    "name": "Cuidados com o vírus.",
+    "description": "Ele pode mudar!",
+    "created_at": "2021-05-30T17:41:43.000-03:00",
+    "updated_at": "2021-05-30T17:41:43.000-03:00"
+  },
+  "image2": {
+    "id": "bcd4cb7c-04dd-45d7-bbcd-5da1c2ab1017",
+    "path": "1622407454083-image.jpg",
+    "name": "Variedade.",
+    "description": "Sabia que existem vários tipos de vacina?",
+    "created_at": "2021-05-30T17:44:14.000-03:00",
+    "updated_at": "2021-05-30T17:44:14.000-03:00"
+  },
+  "image3": {
+    "id": "1576115b-1b5c-4fbb-ad3d-7e19a7f74ef7",
+    "path": "1622407278165-image.jpg",
+    "name": "Hora da vacina!",
+    "description": "Não se esqueça de tomar.",
+    "created_at": "2021-05-30T17:41:18.000-03:00",
+    "updated_at": "2021-05-30T17:41:18.000-03:00"
+  }
+}
+```
+
+#
+
+### Alterar dados/ordem do carrossel [PUT "/:id]
+Altera os dados ou ordem de um carrossel (precisa estar logado com Bearer Token).
+
++ id (param) - ID do carrossel que deseja alterar.
++ image1 (string) - ID da imagem que deseja na posição 1.
++ image2 (string) - ID da imagem que deseja na posição 2.
++ image3 (string) - ID da imagem que deseja na posição 3.
+
++ Request (application/json)
+
+  + Params
+
+```
+id: 5ddccd10-0ef4-40fe-bc64-1a87d60741bb
+```
+
+  + Body
+
+```json
+{
+	"image1": "be029695-4deb-424d-9631-bfb14b493896",
+	"image2": "86e5b5e2-ae33-4f15-831b-c97a47bea5cd",
+	"image3": "7f314a2e-b482-49b5-846a-786b06315489"
+}
+```
+
++ Response (application/json)
+
+  + Body
+
+```json
+{
+  "id": "5ddccd10-0ef4-40fe-bc64-1a87d60741bb",
+  "image1_id": "be029695-4deb-424d-9631-bfb14b493896",
+  "image2_id": "86e5b5e2-ae33-4f15-831b-c97a47bea5cd",
+  "image3_id": "7f314a2e-b482-49b5-846a-786b06315489",
+  "created_at": "2021-05-28T21:19:10.352-03:00",
+  "updated_at": "2021-05-28T21:19:10.352-03:00"
+}
+```
+
+#
+
+### Deletar um carrossel [DELETE "/:id"]
+Deleta um carrossel onde o ID foi informado (precisa estar logado com Bearer Token).
+
++ id (param) - ID do carrossel que deseja deletar.
+
++ Request (application/json)
+
+  + Params
+
+```
+id: 5ddccd10-0ef4-40fe-bc64-1a87d60741bb
+```
+
++ Response (application/json)
+
+  + No Body
+
+
+#
 
 ## 📄 Licença
 
